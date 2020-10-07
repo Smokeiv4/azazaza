@@ -1,0 +1,23 @@
+<meta charset = "utf-8">
+<script type ="text/javascript" src="APIkey.js"></script>
+<script type="text/javascript">
+	async function getEvents(options) {
+		let link = "https://holidayapi.com/v1/holidays?key=" + API_KEY;
+
+		for (opt in options) {
+			link += "&" + opt + "=" + options[opt];
+		}
+
+		return fetch(link)
+			.then( resp => resp.json())
+	}
+	window.onload = () => {
+		getEvents({
+			"year": 2019,
+			"month": 10,
+			"day": 1,
+			"country": "RU"
+		})
+		.then(answer => console.log(answer))	
+	}
+</script>	
